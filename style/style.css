@@ -54,53 +54,35 @@
     background: var(--background);
 }
 
-::-webkit-scrollbar:hover {
-    transition: all 15ms;
-}
+::-webkit-scrollbar:hover {transition: all 15ms;}
 
 ::-webkit-scrollbar-corner,
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track-piece,
-::-webkit-scrollbar-button {
-    background: var(--background);
-}
+::-webkit-scrollbar-button {background: var(--background);}
 
 ::-webkit-scrollbar-thumb {
     border-radius: 2rem;
     background: var(--scrollbar);
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: hsl(0, 0%, var(--switch));
-}
+::-webkit-scrollbar-thumb:hover {background: hsl(0, 0%, var(--switch));}
 /* ------------------------------------------------ELEMENTS------------------------------------------------ */
-h1 {
-    color: var(--font-color);
-}
+h1 { color: var(--font-color);}
 
-html {
-    background: black;
-}
+html { background: black; }
 
 body {
     max-width: 100vw;
     background: var(--background);
     color: var(--font-color);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
     gap: 1rem;
 }
 
 header {
-    width: 100vw;
-    height: 5rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100vw; height: 5rem;
+    display: flex; justify-content: center; align-items: center;
 }
 
 button,
@@ -110,26 +92,17 @@ input[type="submit"] {
     border-radius: var(--border-radius);
     color: var(--font-color);
     background: var(--color);
-    border: none;
-    outline: none;
+    border: none; outline: none;
     cursor: pointer;
     border: 1px solid transparent;
     transition: 100ms ease-in-out;
     font-weight: 600;
-
-    &:hover {
-        background: var(--hover);
-    }
-
-    &:focus {
-        border-color: transparent;
-    }
-
+    &:hover {background: var(--hover);}
+    &:focus {border-color: transparent; }
     &:active {
         background: var(--active);
         border-radius: calc(var(--border-radius) / 4);
-        border-color: var(--invert-color);
-    }
+        border-color: var(--invert-color);}
 }
 
 input {
@@ -138,62 +111,33 @@ input {
     padding: .5rem .5rem;
     border: 1px solid transparent;
     border-radius: calc(var(--border-radius) / 4);
-
-    &:hover {
-        background: var(--hover);
-    }
-
-    &:focus {
-        background: var(--focus);
-        border-color: var(--focus-border);
-    }
-
-    &:active {
-        background: var(--active);
-        border-color: var(--invert-color);
-    }
+    &:hover {background: var(--hover);}
+    &:focus {background: var(--focus); border-color: var(--focus-border);}
+    &:active {background: var(--active); border-color: var(--invert-color);}
 }
 
 .toggle {
-    width: 4rem;
-    height: 2rem;
+    width: 4rem; height: 2rem;
     background: gray;
     border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-
-    >input {
-        display: none;
+    display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
+    >input {display: none;
         +.dot {
             transform: translateX(.15rem);
             transition: 150ms ease-in all;
-            width: 1.8rem;
-            aspect-ratio: 1/1;
+            width: 1.8rem; aspect-ratio: 1/1;
             background-color: white;
             border-radius: var(--border-radius);
-            z-index: 1;
-        }
+            z-index: 1;}
         &:checked {
-            +.dot {
-                transform: translateX(2.05rem);
-
-                +.togglecolor {
-                    background-color: var(--invert-color);
-                }
-            }
-        }
-    }
-    > .togglecolor {
+            +.dot {transform: translateX(2.05rem);
+                +.togglecolor {background-color: var(--invert-color);}}}}
+    >.togglecolor {
         position: absolute;
-        width: 4rem;
-        height: 2rem;
+        width: 4rem; height: 2rem;
         background-color: transparent;
         border-radius: 2rem;
-        z-index: 0;
-    }
-
+        z-index: 0;}
 }
 /* --------------------------------------------CLASSES--------------------------------------------- */
 .img {
@@ -202,21 +146,15 @@ input {
 }
 
 .checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
+    display: flex; align-items: center; justify-content: center; gap: .5rem;
 }
 
 .numerickeyboard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .5rem;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem;
 }
 
 .second {
     background: var(--color);
     filter: var(--secondary);
 }
-
 /* -----------------------------------------------IDs---------------------------------------------- */
