@@ -15,13 +15,13 @@ function getColor(imageElement, ratio) {
         length = data.data.length
     } catch (err) {
         console.error(err)
-        return {R: 0, G: 0, B: 0} 
+        return { R: 0, G: 0, B: 0 }
     }
 
     let R, G, B
     R = G = B = 0
 
-    while((i += ratio * 4) < length){
+    while ((i += ratio * 4) < length) {
         ++count
 
         R += data.data[i]
@@ -29,19 +29,43 @@ function getColor(imageElement, ratio) {
         B += data.data[i + 2]
     }
 
-    R = ~~(R/ count)
-    G = ~~(G/ count)
-    B = ~~(B/ count)
+    R = ~~(R / count)
+    G = ~~(G / count)
+    B = ~~(B / count)
 
-    return {R, G, B}
+    return { R, G, B }
 }
+
+function hexToHue(corHex) {
+    var r = parseInt(corHex.substring(1, 3), 16);
+    var g = parseInt(corHex.substring(3, 5), 16);
+    var b = parseInt(corHex.substring(5, 7), 16);
+    var max = Math.max(r, g, b);
+    var min = Math.min(r, g, b);
+    var hue;
+
+    if (max === min) { hue = 0;}
+    else {
+        var d = max - min;
+        switch (max) {
+            case r: hue = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g: hue = (b - r) / d + 2;
+                break;
+            case b: hue = (r - g) / d + 4;
+                break;
+        } hue /= 6;
+    }
+    return Math.round(hue * 360);
+}
+
 
 function rgb2hsl(r, g, b) {
     // see https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation
     // convert r,g,b [0,255] range to [0,1]
     r = r / 255,
-    g = g / 255,
-    b = b / 255;
+        g = g / 255,
+        b = b / 255;
     // get the min and max of r,g,b
     var max = Math.max(r, g, b);
     var min = Math.min(r, g, b);
@@ -57,7 +81,7 @@ function rgb2hsl(r, g, b) {
         // saturation is simply the chroma scaled to fill
         // the interval [0, 1] for every combination of hue and lightness
         sat = c / (1 - Math.abs(2 * lum - 1));
-        switch(max) {
+        switch (max) {
             case r:
                 hue = (g - b) / c;
                 hue = ((g - b) / c) % 6;
@@ -77,17 +101,17 @@ function rgb2hsl(r, g, b) {
     return [hue, sat, lum];
 }
 
-var x = document.getElementById("image")
+var x = document.getElementsByClassName("cfont")[0]
 const image = x.querySelector("img")
-    // Get average color in RGB
-    const {R, G, B} = getColor(image, 4)
-    // Convert RGB to HSL
-    const [hue, sat, lum] = rgb2hsl(R, G, B)
-    // HSL values
-    document.documentElement.style.setProperty(`--extracted`, `hsl(${hue},${sat}%,${lum}%)`);
-    // Hue value
-    document.documentElement.style.setProperty(`--hue`, `${hue}`);
-    // Saturation value
-    document.documentElement.style.setProperty(`--sat`, `${sat}%`);
-    // Lightness value
-    document.documentElement.style.setProperty(`--lum`, `${lum}%`);
+// Get average color in RGB
+const { R, G, B } = getColor(image, 4)
+// Convert RGB to HSL
+const [hue, sat, lum] = rgb2hsl(R, G, B)
+// HSL values
+document.documentElement.style.setProperty(`--extracted`, `hsl(${hue},${sat}%,${lum}%)`);
+// Hue value
+document.documentElement.style.setProperty(`--hue`, `${hue}`);
+// Saturation value
+document.documentElement.style.setProperty(`--sat`, `${sat}%`);
+// Lightness value
+document.documentElement.style.setProperty(`--lum`, `${lum}%`);

@@ -3,19 +3,27 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    user-select: none;
+    outline: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+    accent-color: var(--font-color);
 
     --bg-border-radius: 2rem;
     --border-radius: 2rem;
-    --threshold: 60;
-    --switch: calc(calc(var(--lum) - var(--threshold)) * -100%);
-    --font-color: hsl(0, 0%, var(--switch));
+    --font-color: hsl(var(--hue), 50%, 80%);
 
     --background: hsl(var(--hue), 50%, 10%);
     --scrollbar: hsl(var(--hue), 50%, 15%);
-    --color: hsl(var(--hue), 50%, var(--lum));
-    --hover: hsl(var(--hue), 50%, calc(var(--lum) + 5%));
-    --active: hsl(var(--hue), 50%, calc(var(--lum) + 10%));
-    --invert-color: hsl(var(--hue), 50%, calc(var(--lum) + 60%));
+    --color: hsl(var(--hue), 50%, 15%);
+    --hover: hsl(var(--hue), 50%, 20%);
+    --focus: hsl(var(--hue), 50%, 20%);
+    --focus-border: hsl(var(--hue), 50%, 30%);
+    --active: hsl(var(--hue), 50%, 27%);
+    --invert-color: hsl(var(--hue), 50%, 40%);
+
+    --secondary: hue-rotate(-50deg) brightness(1.2);
+
 }
 /* ----------------------------------------------MEDIA QUERY---------------------------------------------- */
 @media screen and (max-width: 700px) {
@@ -26,12 +34,16 @@
 
 @media screen and (prefers-color-scheme: light) {
     * {
+        --font-color: hsl(var(--hue), 50%, 20%);
         --background: hsl(var(--hue), 50%, 90%);
         --scrollbar: hsl(var(--hue), 50%, 80%);
         --color: hsl(var(--hue), 50%, 80%);
-        --hover: hsl(var(--hue), 50%, calc(var(--lum) + 55%));
-        --active: hsl(var(--hue), 50%, calc(var(--lum) + 60%));
+        --hover: hsl(var(--hue), 50%, 75%);
+        --focus: hsl(var(--hue), 50%, 75%);
+        --focus-border: hsl(var(--hue), 50%, 65%);
+        --active: hsl(var(--hue), 50%, 70%);
         --invert-color: hsl(var(--hue), 50%, calc(var(--lum) + 10%));
+        --secondary: hue-rotate(-50deg);
     }
 }
 /* --------------------------------------------PSEUDO ELEMENTS-------------------------------------------- */
@@ -41,23 +53,30 @@
     height: .5rem;
     background: var(--background);
 }
+
 ::-webkit-scrollbar:hover {
     transition: all 15ms;
 }
+
 ::-webkit-scrollbar-corner,
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track-piece,
 ::-webkit-scrollbar-button {
     background: var(--background);
 }
+
 ::-webkit-scrollbar-thumb {
     border-radius: 2rem;
     background: var(--scrollbar);
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: hsl(0, 0%, var(--switch));
 }
 /* ------------------------------------------------ELEMENTS------------------------------------------------ */
+h1 {
+    color: var(--font-color);
+}
 
 html {
     background: black;
@@ -72,7 +91,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 10rem;
+    gap: 1rem;
 }
 
 header {
@@ -84,30 +103,120 @@ header {
     align-items: center;
 }
 
-button {
+button,
+input[type="button"],
+input[type="submit"] {
     padding: 1rem 2rem;
     border-radius: var(--border-radius);
-    background: var(--color);
     color: var(--font-color);
+    background: var(--color);
     border: none;
     outline: none;
     cursor: pointer;
     border: 1px solid transparent;
     transition: 100ms ease-in-out;
-    
+    font-weight: 600;
+
     &:hover {
         background: var(--hover);
     }
-    
+
+    &:focus {
+        border-color: transparent;
+    }
+
     &:active {
         background: var(--active);
         border-radius: calc(var(--border-radius) / 4);
         border-color: var(--invert-color);
     }
 }
+
+input {
+    background: var(--color);
+    color: var(--font-color);
+    padding: .5rem .5rem;
+    border: 1px solid transparent;
+    border-radius: calc(var(--border-radius) / 4);
+
+    &:hover {
+        background: var(--hover);
+    }
+
+    &:focus {
+        background: var(--focus);
+        border-color: var(--focus-border);
+    }
+
+    &:active {
+        background: var(--active);
+        border-color: var(--invert-color);
+    }
+}
+
+.toggle {
+    width: 4rem;
+    height: 2rem;
+    background: gray;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    >input {
+        display: none;
+        +.dot {
+            transform: translateX(.15rem);
+            transition: 150ms ease-in all;
+            width: 1.8rem;
+            aspect-ratio: 1/1;
+            background-color: white;
+            border-radius: var(--border-radius);
+            z-index: 1;
+        }
+        &:checked {
+            +.dot {
+                transform: translateX(2.05rem);
+
+                +.togglecolor {
+                    background-color: var(--invert-color);
+                }
+            }
+        }
+    }
+    > .togglecolor {
+        position: absolute;
+        width: 4rem;
+        height: 2rem;
+        background-color: transparent;
+        border-radius: 2rem;
+        z-index: 0;
+    }
+
+}
 /* --------------------------------------------CLASSES--------------------------------------------- */
 .img {
     width: min(55rem, 90vw);
     border-radius: var(--bg-border-radius);
 }
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.numerickeyboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+}
+
+.second {
+    background: var(--color);
+    filter: var(--secondary);
+}
+
 /* -----------------------------------------------IDs---------------------------------------------- */
