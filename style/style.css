@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+    --bg-border-radius: 2rem;
+    --border-radius: 2rem;
+    --threshold: 60;
+    --switch: calc(calc(var(--lum) - var(--threshold)) * -100%);
+    --font-color: hsl(0, 0%, var(--switch));
+
+    --background: hsl(var(--hue), 50%, 10%);
+    --scrollbar: hsl(var(--hue), 50%, 15%);
+    --color: hsl(var(--hue), 50%, var(--lum));
+    --hover: hsl(var(--hue), 50%, calc(var(--lum) + 5%));
+    --active: hsl(var(--hue), 50%, calc(var(--lum) + 10%));
+    --invert-color: hsl(var(--hue), 50%, calc(var(--lum) + 60%));
+}
+/* ----------------------------------------------MEDIA QUERY---------------------------------------------- */
+@media screen and (max-width: 700px) {
+    * {
+        --bg-border-radius: 10rem;
+    }
+}
+
+@media screen and (prefers-color-scheme: light) {
+    * {
+        --background: hsl(var(--hue), 50%, 90%);
+        --scrollbar: hsl(var(--hue), 50%, 80%);
+        --color: hsl(var(--hue), 50%, 80%);
+        --hover: hsl(var(--hue), 50%, calc(var(--lum) + 55%));
+        --active: hsl(var(--hue), 50%, calc(var(--lum) + 60%));
+        --invert-color: hsl(var(--hue), 50%, calc(var(--lum) + 10%));
+    }
+}
+/* --------------------------------------------PSEUDO ELEMENTS-------------------------------------------- */
+::-webkit-scrollbar {
+    transition: all 15ms;
+    width: .5rem;
+    height: .5rem;
+    background: var(--background);
+}
+::-webkit-scrollbar:hover {
+    transition: all 15ms;
+}
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-button {
+    background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 2rem;
+    background: var(--scrollbar);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(0, 0%, var(--switch));
+}
+/* ------------------------------------------------ELEMENTS------------------------------------------------ */
+
+html {
+    background: black;
+}
+
+body {
+    max-width: 100vw;
+    background: var(--background);
+    color: var(--font-color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10rem;
+}
+
+header {
+    width: 100vw;
+    height: 5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    background: var(--color);
+    color: var(--font-color);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 100ms ease-in-out;
+    
+    &:hover {
+        background: var(--hover);
+    }
+    
+    &:active {
+        background: var(--active);
+        border-radius: calc(var(--border-radius) / 4);
+        border-color: var(--invert-color);
+    }
+}
+/* --------------------------------------------CLASSES--------------------------------------------- */
+.img {
+    width: min(55rem, 90vw);
+    border-radius: var(--bg-border-radius);
+}
+/* -----------------------------------------------IDs---------------------------------------------- */
