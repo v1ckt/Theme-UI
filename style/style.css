@@ -117,6 +117,7 @@ input {
 }
 
 .toggle {
+    cursor: pointer;
     width: 4rem; height: 2rem;
     background: gray;
     border-radius: var(--border-radius);
@@ -138,15 +139,13 @@ input {
         background-color: transparent;
         border-radius: 2rem;
         z-index: 0;}
+
+    display: none;
 }
 /* --------------------------------------------CLASSES--------------------------------------------- */
 .img {
-    width: min(55rem, 90vw);
+    width: min(25rem, 90vw);
     border-radius: var(--bg-border-radius);
-}
-
-.checkbox {
-    display: flex; align-items: center; justify-content: center; gap: .5rem;
 }
 
 .numerickeyboard {
