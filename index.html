@@ -13,8 +13,18 @@
     <header>
         <h1>Theme UI</h1>
     </header>
-    <div id="image" class="cfont">
-        <img src="img/5.png" alt="" class="img">
+    <div class="caroussel">
+        <div class="caroussel__items">
+            <img src="img/1.png" alt="" class="img caroussel__item active">
+            <img src="img/2.png" alt="" class="img caroussel__item">
+            <img src="img/3.png" alt="" class="img caroussel__item">
+            <img src="img/4.png" alt="" class="img caroussel__item">
+            <img src="img/5.png" alt="" class="img caroussel__item">
+        </div>
+        <div class="caroussel__btn">
+            <button class="caroussel__prev" onclick="CarScrollP('caroussel__item')"><</button>
+            <button class="caroussel__next" onclick="CarScrollN('caroussel__item')">></button>
+        </div>
     </div>
 
     <div class="numerickeyboard">
@@ -41,6 +51,7 @@
         <div class="togglecolor"></div>
     </label>
     <!-- ------------------------------JS--------------------------------- -->
+    <script src="script/carrousel.js"></script>
     <script src="script/script.js"></script>
 </body>
 

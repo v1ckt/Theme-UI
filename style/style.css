@@ -77,7 +77,6 @@ body {
     background: var(--background);
     color: var(--font-color);
     display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-    gap: 1rem;
 }
 
 header {
@@ -142,12 +141,32 @@ input {
 
     display: none;
 }
-/* --------------------------------------------CLASSES--------------------------------------------- */
-.img {
-    width: min(25rem, 90vw);
-    border-radius: var(--bg-border-radius);
-}
 
+.caroussel {
+    transition: 150ms ease-in;
+    margin-bottom: 1rem;
+    max-width: min(25rem, 90vw);
+    height: fit-content;
+    display: flex; align-items: center; flex-direction: column; gap: 1rem;
+    .caroussel__btn {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        gap: 6rem;
+    }
+    .caroussel__items {
+        display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
+        .caroussel__item {
+            width: 0;
+            height: min(40vh, 50vw);
+            border-radius: var(--bg-border-radius);
+        }
+        .caroussel__item.active {
+            width: auto;
+        }
+    }
+}
+/* --------------------------------------------CLASSES--------------------------------------------- */
 .numerickeyboard {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem;
 }
