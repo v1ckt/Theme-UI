@@ -11,15 +11,15 @@
 
     --bg-border-radius: 2rem;
     --border-radius: 2rem;
-    --font-color: hsl(var(--hue), 50%, 80%);
+    --font-color: hsl(var(--hue), 40%, 80%);
 
-    --background: hsl(var(--hue), 50%, 10%);
-    --scrollbar: hsl(var(--hue), 50%, 15%);
-    --color: hsl(var(--hue), 50%, 15%);
-    --hover: hsl(var(--hue), 50%, 20%);
-    --focus: hsl(var(--hue), 50%, 20%);
-    --focus-border: hsl(var(--hue), 50%, 30%);
-    --active: hsl(var(--hue), 50%, 27%);
+    --background: hsl(var(--hue), 30%, 10%);
+    --scrollbar: hsl(var(--hue), 40%, 15%);
+    --color: hsl(var(--hue), 40%, 13%);
+    --hover: hsl(var(--hue), 40%, 17%);
+    --focus: hsl(var(--hue), 40%, 17%);
+    --focus-border: hsl(var(--hue), 40%, 30%);
+    --active: hsl(var(--hue), 40%, 20%);
     --invert-color: hsl(var(--hue), 50%, 40%);
 
     --secondary: hue-rotate(-50deg) brightness(1.2);
@@ -34,15 +34,15 @@
 
 @media screen and (prefers-color-scheme: light) {
     * {
-        --font-color: hsl(var(--hue), 50%, 20%);
-        --background: hsl(var(--hue), 50%, 90%);
-        --scrollbar: hsl(var(--hue), 50%, 80%);
-        --color: hsl(var(--hue), 50%, 80%);
-        --hover: hsl(var(--hue), 50%, 75%);
-        --focus: hsl(var(--hue), 50%, 75%);
-        --focus-border: hsl(var(--hue), 50%, 65%);
-        --active: hsl(var(--hue), 50%, 70%);
-        --invert-color: hsl(var(--hue), 50%, calc(var(--lum) + 10%));
+        --font-color: hsl(var(--hue), 30%, 25%);
+        --background: hsl(var(--hue), 40%, 92%);
+        --scrollbar: hsl(var(--hue), 40%, 80%);
+        --color: hsl(var(--hue), 40%, 85%);
+        --hover: hsl(var(--hue), 40%, 80%);
+        --focus: hsl(var(--hue), 40%, 75%);
+        --focus-border: hsl(var(--hue), 40%, 60%);
+        --active: hsl(var(--hue), 40%, 75%);
+        --invert-color: hsl(var(--hue), 40%, calc(var(--lum) + 10%));
         --secondary: hue-rotate(-50deg);
     }
 }
@@ -94,14 +94,15 @@ input[type="submit"] {
     border: none; outline: none;
     cursor: pointer;
     border: 1px solid transparent;
-    transition: 100ms ease-in-out;
+    transition: 250ms ease-in-out;
     font-weight: 600;
     &:hover {background: var(--hover);}
-    &:focus {border-color: transparent; }
+    &:focus {border-color: transparent; transition: 100ms ease-in;}
     &:active {
         background: var(--active);
         border-radius: calc(var(--border-radius) / 4);
-        border-color: var(--invert-color);}
+        border-color: var(--focus-border);
+        transition: 100ms ease-in;}
 }
 
 input {
@@ -112,34 +113,36 @@ input {
     border-radius: calc(var(--border-radius) / 4);
     &:hover {background: var(--hover);}
     &:focus {background: var(--focus); border-color: var(--focus-border);}
-    &:active {background: var(--active); border-color: var(--invert-color);}
+    &:active {background: var(--active); border-color: var(--focus-border);}
 }
 
 .toggle {
     cursor: pointer;
-    width: 4rem; height: 2rem;
-    background: gray;
+    width: 3.6rem; height: 1.8rem;
+    background: var(--color);
     border-radius: var(--border-radius);
-    display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
+    display: flex; flex-direction: row; align-items: center;
+    align-content: center; justify-content: flex-start;
+    transition: 150ms ease-in;
     >input {display: none;
         +.dot {
-            transform: translateX(.15rem);
-            transition: 150ms ease-in all;
-            width: 1.8rem; aspect-ratio: 1/1;
-            background-color: white;
+            margin: 0 .1rem 0 .15rem;
+            width: 1.4rem; aspect-ratio: 1/1;
+            background-color: #eee;
             border-radius: var(--border-radius);
-            z-index: 1;}
+            transition: 150ms ease-in; z-index: 1;}
         &:checked {
-            +.dot {transform: translateX(2.05rem);
-                +.togglecolor {background-color: var(--invert-color);}}}}
+            +.dot {transform: translateX(1.85rem);
+                +.togglecolor {
+                    background-color: var(--invert-color);
+                    border: 1px solid var(--focus-border);}}}}
     >.togglecolor {
-        position: absolute;
-        width: 4rem; height: 2rem;
+        position: absolute; width: 3.6rem; height: 1.8rem;
         background-color: transparent;
         border-radius: 2rem;
         z-index: 0;}
-
-    display: none;
+        &:hover {background: var(--hover);}
+        display: none;
 }
 
 .caroussel {
