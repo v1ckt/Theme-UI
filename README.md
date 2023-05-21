@@ -1,6 +1,6 @@
 # Theme UI (beta)
 Theme UI is an experimental UI Patern based on Google's Material You.
-It takes the image predominant color and uses it as base to the color system.
+It takes the predominant color of an image and use it as the system color.
 
 ## Preview
 
