@@ -91,3 +91,8 @@ function CarScrollN(Name) {
             } else { y[0].classList.add("active"); }break;}}
     updateColor(".active");
 }
+
+function expandMenu(className) {
+    var x = document.getElementsByClassName(className);
+    x.classList.toggle("active");
+}

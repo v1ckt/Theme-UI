@@ -12,31 +12,64 @@
 </head>
 
 <body>
-    <header>
-        <h1>Theme UI</h1>
-    </header>
-    <div class="caroussel">
-        <div class="caroussel__items">
-            <img src="img/1.png" alt="" class="img caroussel__item active">
-            <img src="img/2.png" alt="" class="img caroussel__item">
-            <img src="img/3.png" alt="" class="img caroussel__item">
-            <img src="img/4.png" alt="" class="img caroussel__item">
-            <img src="img/5.png" alt="" class="img caroussel__item">
-        </div>
-        <div class="caroussel__btn">
-            <button class="caroussel__prev" onclick="CarScrollP('caroussel__item')"><</button>
-            <button class="caroussel__next" onclick="CarScrollN('caroussel__item')">></button>
-        </div>
-    </div>
+    <nav class="nav__main">
+        <ul class="nav__group">
+            <li class="nav__option" onmouseover="expandMenu()">
+                <div class="element__icon_container">
+                    <img src="favicon/dark.png" alt="" class="element__icon">
+                </div>
+                <p class="element__icon_label"><a href="">Label</a></p>
+            </li>
 
-    <label class="toggle" for="toggle">
-        <input type="checkbox" name="checkbox" id="toggle" class="check">
-        <div class="dot"></div>
-        <div class="togglecolor"></div>
-    </label>
-    <!-- ------------------------------JS--------------------------------- -->
-    <script src="script/carrousel.js"></script>
-    <script src="script/script.js"></script>
+            
+            <li class="nav__option">
+                <div class="element__icon_container">
+                    <img src="favicon/light.png" alt="" class="element__icon">
+                </div>
+                <p class="element__icon_label"><a href="">Label</a></p>
+            </li>
+
+            <li class="nav__option">
+                <div class="element__icon_container">
+                    <img src="favicon/dark.png" alt="" class="element__icon">
+                </div>
+                <p class="element__icon_label"><a href="">Label</a></p>
+            </li>
+
+
+        </ul>
+    </nav>
+    <main>
+        <header>
+            <h1>Theme UI</h1>
+        </header>
+
+        <div class="caroussel">
+            <div class="caroussel__items">
+                <img src="img/1.png" alt="" class="img caroussel__item active">
+                <img src="img/2.png" alt="" class="img caroussel__item">
+                <img src="img/3.png" alt="" class="img caroussel__item">
+                <img src="img/4.png" alt="" class="img caroussel__item">
+                <img src="img/5.png" alt="" class="img caroussel__item">
+            </div>
+            <div class="caroussel__btn">
+                <button class="caroussel__prev" onclick="CarScrollP('caroussel__item')"><</button>
+                        <button class="caroussel__next" onclick="CarScrollN('caroussel__item')">></button>
+            </div>
+        </div>
+
+        <label class="toggle" for="toggle">
+            <input type="checkbox" name="checkbox" id="toggle" class="check">
+            <div class="dot"></div>
+            <div class="togglecolor"></div>
+        </label>
+
+
+
+        <!-- ------------------------------JS--------------------------------- -->
+        <script src="script/carrousel.js"></script>
+        <script src="script/script.js"></script>
+    </main>
 </body>
 
 </html>
