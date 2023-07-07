@@ -18,7 +18,7 @@
     --center-display: flex; justify-content: center; align-items: center;
     --main-width: calc(100% - var(--nav-width));
 
-    --background: hsl(var(--hue), 30%, 10%);
+    --background: hsl(var(--hue), 20%, 10%);
     --scrollbar: hsl(var(--hue), 40%, 15%);
     --color: hsl(var(--hue), 40%, 13%);
     --hover: hsl(var(--hue), 40%, 17%);
@@ -26,7 +26,7 @@
     --focus-border: hsl(var(--hue), 40%, 30%);
     --active: hsl(var(--hue), 40%, 20%);
     --invert-color: hsl(var(--hue), 50%, 40%);
-    --nav-bg: hsl(var(--hue), 40%, 15%);
+    --nav-bg: hsl(var(--hue), 20%, 15%);
 
     --secondary: hue-rotate(-50deg) brightness(1.2);
 
@@ -92,7 +92,7 @@ body {
     display: flex; flex-direction: row;
 }
 
-main {
+main, .main {
     width: var(--main-width); height: 100vh;
     display: var(--center-display);
     justify-content: flex-start;
@@ -117,14 +117,41 @@ header {
         flex-direction: column;
         gap: 2rem;
         .nav__option {
+            cursor: pointer;
+            background-color: var(--active);
+            padding: calc(var(--nav-width) - 34%);
             display: var(--center-display);
             flex-direction: column;
+            .nav__content {
+                display: none;
+            }
             .element__icon_container {
                 .element__icon {
                     width: 2rem; aspect-ratio: 1/1;
                 }
                 + .element__icon_label {
-                }}}}
+                    > a {
+                        text-decoration: none;
+                        color: var(--font-color);
+                        font-weight: 600;
+                    }
+                }
+            }
+            .nav__content {
+                display: none;
+                position: absolute;
+                left: var(--nav-width);
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20rem;
+                height: 100vh;
+                background-color: green;
+                &.active {
+                    display: flex;
+                }
+            }
+        }
+    }
 }
 
 button,

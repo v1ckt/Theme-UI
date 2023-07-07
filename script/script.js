@@ -92,7 +92,14 @@ function CarScrollN(Name) {
     updateColor(".active");
 }
 
-function expandMenu(className) {
-    var x = document.getElementsByClassName(className);
-    x.classList.toggle("active");
+function navExpand(Name) {
+    x = document.getElementsByClassName(Name);
+    x.querySelector('.nav__content').classList.add("active");
+    document.getElementsByTagName("main").style.width = "calc(100% - 20rem)";
+}
+function navClose(Name) {
+    // z = document.getElementsByClassName(Name);
+    // z.querySelector('.nav__content').classList.remove("active");
+    // document.getElementsByTagName("main").style.width = "100%";
+    pass
 }

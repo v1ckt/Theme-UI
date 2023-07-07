@@ -14,14 +14,14 @@
 <body>
     <nav class="nav__main">
         <ul class="nav__group">
-            <li class="nav__option" onmouseover="expandMenu()">
+            <li class="nav__option" onmouseover="navExpand('nav__option')">
                 <div class="element__icon_container">
                     <img src="favicon/dark.png" alt="" class="element__icon">
                 </div>
                 <p class="element__icon_label"><a href="">Label</a></p>
+                <div class="nav__content" onmouseleave="navClose('nav__option')">ITEM 1</div>
             </li>
 
-            
             <li class="nav__option">
                 <div class="element__icon_container">
                     <img src="favicon/light.png" alt="" class="element__icon">
@@ -39,7 +39,7 @@
 
         </ul>
     </nav>
-    <main>
+    <main class="main">
         <header>
             <h1>Theme UI</h1>
         </header>
